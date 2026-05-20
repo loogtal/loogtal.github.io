@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lise Rosario — ML/AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1e50a0;
+    --accent: #4fc3f7;
+    --gold: #f0c040;
+    --light: #f5f7fa;
+    --muted: #8896a7;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(79,195,247,0.1);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30,80,160,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(79,195,247,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 800px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    border: 1px solid rgba(79,195,247,0.3);
+    padding: 0.3rem 0.8rem; border-radius: 2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted);
+    font-weight: 300; margin: 1.5rem 0 2.5rem;
+    max-width: 560px; line-height: 1.7;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-links {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn {
+    padding: 0.75rem 1.8rem;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none; border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(79,195,247,0.4); color: var(--accent);
+  }
+  .btn-outline:hover {
+    background: rgba(79,195,247,0.1); transform: translateY(-2px);
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem; color: var(--white);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem; line-height: 1.1;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .project-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px; padding: 2rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(79,195,247,0.2); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; margin-bottom: 0.5rem;
+  }
+  .project-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    background: rgba(79,195,247,0.08);
+    border: 1px solid rgba(79,195,247,0.2);
+    padding: 0.25rem 0.6rem; border-radius: 2px;
+  }
+  .project-metric {
+    display: flex; gap: 1.5rem;
+    padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .metric { text-align: center; }
+  .metric-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem; color: var(--gold); font-weight: 500;
+  }
+  .metric-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--accent); text-decoration: none;
+    font-size: 0.8rem; font-weight: 500;
+    margin-top: 1rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.7rem; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-group {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px; padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.875rem; color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .skill-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* CONTACT */
+  .contact-section {
+    text-align: center; padding: 6rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Lise Rosario</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">ML / AI Engineer</div>
+    <h1>Building <em>intelligent</em><br>systems that work.</h1>
+    <p class="hero-sub">
+      Computer vision • Deep learning • Real-time AI deployment<br>
+      B.Sc. Industrial Mathematics & Data Science — Mahidol University
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/loogtal" class="btn btn-primary" target="_blank">GitHub →</a>
+      <a href="https://www.linkedin.com/in/lise-rosario-209826403" class="btn btn-outline" target="_blank">LinkedIn</a>
+      <a href="mailto:liserosaliz@gmail.com" class="btn btn-outline">Email Me</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">99<span>.3%</span></div>
+        <div class="stat-label">mAP@0.5 Accuracy</div>
+      </div>
+      <div>
+        <div class="stat-num">2<span>k+</span></div>
+        <div class="stat-label">Training Images</div>
+      </div>
+      <div>
+        <div class="stat-num">&lt;2<span>s</span></div>
+        <div class="stat-label">Detection Latency</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<section id="projects">
+  <div class="section-label">// selected work</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">🐍</div>
+      <div class="project-title">Snake Detection & Alert System</div>
+      <p class="project-desc">
+        Real-time snake detection using YOLOv8 trained on a custom 2,000-image dataset.
+        Integrated OpenCV for live webcam inference and automated WhatsApp alerts via Twilio API.
+        Deployed end-to-end on Apple M3.
+      </p>
+      <div class="project-tags">
+        <span class="tag">YOLOv8</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">Twilio API</span>
+        <span class="tag">Python</span>
+        <span class="tag">Computer Vision</span>
+      </div>
+      <div class="project-metric">
+        <div class="metric">
+          <div class="metric-val">99.3%</div>
+          <div class="metric-label">mAP@0.5</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">0.971</div>
+          <div class="metric-label">F1 Score</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">15 FPS</div>
+          <div class="metric-label">Inference</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">&lt;2s</div>
+          <div class="metric-label">Alert Latency</div>
+        </div>
+      </div>
+      <a href="https://github.com/loogtal/snake-detection-yolov8" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📈</div>
+      <div class="project-title">Quant Singularity — AI Trading</div>
+      <p class="project-desc">
+        AI-powered crypto trading system integrating Binance API with machine learning models
+        to analyze market patterns and generate real-time trading signals.
+        Applies time-series analysis and predictive modeling to financial data.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Binance API</span>
+        <span class="tag">Python</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Time-Series</span>
+        <span class="tag">In Progress</span>
+      </div>
+      <div class="project-metric">
+        <div class="metric">
+          <div class="metric-val">Live</div>
+          <div class="metric-label">Market Data</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">ML</div>
+          <div class="metric-label">Signal Engine</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Auto</div>
+          <div class="metric-label">Execution</div>
+        </div>
+      </div>
+      <a href="https://github.com/loogtal/quant_singularity" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="skills">
+  <div class="section-label">// capabilities</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">ML / AI</div>
+      <div class="skill-item"><div class="skill-dot"></div>YOLOv8 / Ultralytics</div>
+      <div class="skill-item"><div class="skill-dot"></div>scikit-learn</div>
+      <div class="skill-item"><div class="skill-dot"></div>TensorFlow / Keras</div>
+      <div class="skill-item"><div class="skill-dot"></div>Model Evaluation (mAP, F1)</div>
+      <div class="skill-item"><div class="skill-dot"></div>Dataset Annotation</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages & Tools</div>
+      <div class="skill-item"><div class="skill-dot"></div>Python</div>
+      <div class="skill-item"><div class="skill-dot"></div>SQL</div>
+      <div class="skill-item"><div class="skill-dot"></div>Git / GitHub</div>
+      <div class="skill-item"><div class="skill-dot"></div>Jupyter / Google Colab</div>
+      <div class="skill-item"><div class="skill-dot"></div>OpenCV</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data & APIs</div>
+      <div class="skill-item"><div class="skill-dot"></div>Pandas / NumPy</div>
+      <div class="skill-item"><div class="skill-dot"></div>Power BI</div>
+      <div class="skill-item"><div class="skill-dot"></div>Twilio API</div>
+      <div class="skill-item"><div class="skill-dot"></div>Binance API</div>
+      <div class="skill-item"><div class="skill-dot"></div>AWS / GCP basics</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Certifications</div>
+      <div class="skill-item"><div class="skill-dot"></div>Prompt Engineering — Coursera</div>
+      <div class="skill-item"><div class="skill-dot"></div>Power BI Analyst — Microsoft</div>
+      <div class="skill-item"><div class="skill-dot"></div>Cybersecurity — Cisco</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Education</div>
+      <div class="skill-item"><div class="skill-dot"></div>Mahidol University</div>
+      <div class="skill-item"><div class="skill-dot"></div>B.Sc. Industrial Mathematics</div>
+      <div class="skill-item"><div class="skill-dot"></div>& Data Science</div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-item"><div class="skill-dot"></div>Thai — Native</div>
+      <div class="skill-item"><div class="skill-dot"></div>English — Professional</div>
+      <div class="skill-item"><div class="skill-dot"></div>Bilingual Communication</div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="section-label">// get in touch</div>
+  <h2 class="section-title" style="font-family:'DM Serif Display',serif;font-size:2.5rem;">Let's build something.</h2>
+  <p style="color:var(--muted);max-width:400px;margin:0 auto 2rem;line-height:1.7;">
+    Open to ML/AI Engineer roles in Bangkok and remote opportunities.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:liserosaliz@gmail.com" class="contact-link">✉ liserosaliz@gmail.com</a>
+    <a href="https://github.com/loogtal" class="contact-link" target="_blank">⌥ github.com/loogtal</a>
+    <a href="https://www.linkedin.com/in/lise-rosario-209826403" class="contact-link" target="_blank">in LinkedIn</a>
+    <a href="tel:+66949532502" class="contact-link">✆ +66 94-953-2502</a>
+  </div>
+</div>
+
+</body>
+</html>
