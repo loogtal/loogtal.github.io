@@ -146,6 +146,27 @@
 
   /* PROJECTS */
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .project-card.featured .project-content { padding: 0; }
+  .services-section { margin-top: 5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .service-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px; padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .service-card:hover { border-color: rgba(79,195,247,0.2); transform: translateY(-3px); }
+  .service-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .service-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .service-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .service-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem; color: var(--gold);
+  }
   .project-card {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.07);
@@ -276,15 +297,19 @@
     <div class="hero-stats">
       <div>
         <div class="stat-num">99<span>.3%</span></div>
-        <div class="stat-label">mAP@0.5 Accuracy</div>
+        <div class="stat-label">AI Accuracy</div>
       </div>
       <div>
-        <div class="stat-num">2<span>k+</span></div>
-        <div class="stat-label">Training Images</div>
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">AI Projects</div>
       </div>
       <div>
         <div class="stat-num">&lt;2<span>s</span></div>
         <div class="stat-label">Detection Latency</div>
+      </div>
+      <div>
+        <div class="stat-num">26<span>k</span></div>
+        <div class="stat-label">TikTok Followers</div>
       </div>
     </div>
   </div>
@@ -365,8 +390,85 @@
       <a href="https://github.com/loogtal/quant_singularity" class="project-link" target="_blank">View on GitHub →</a>
     </div>
 
+    <div class="project-card">
+      <div class="project-icon">🚗</div>
+      <div class="project-title">License Plate Detection & Auto-Logger</div>
+      <p class="project-desc">
+        Real-time license plate detection using OpenCV and EasyOCR supporting Thai + English.
+        Auto-logs plate number, date, and time to Excel instantly via webcam or image upload.
+      </p>
+      <div class="project-tags">
+        <span class="tag">OpenCV</span>
+        <span class="tag">EasyOCR</span>
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Computer Vision</span>
+      </div>
+      <div class="project-metric">
+        <div class="metric">
+          <div class="metric-val">Thai</div>
+          <div class="metric-label">+ English OCR</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Auto</div>
+          <div class="metric-label">Excel Log</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Live</div>
+          <div class="metric-label">Webcam</div>
+        </div>
+      </div>
+      <a href="https://github.com/loogtal/license-plate-detection" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
   </div>
-</section>
+
+  <div class="services-section">
+    <div class="section-label">// available for hire</div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:2rem;margin-bottom:0.5rem;">Services</h3>
+    <p style="color:var(--muted);margin-bottom:0;">รับจ้างทำระบบ AI และ Python Automation สำหรับธุรกิจ</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <div class="service-title">AI Automation</div>
+        <div class="service-desc">ระบบอัตโนมัติด้วย Python ลดงานซ้ำๆ ส่ง Line/Email แจ้งเตือนอัตโนมัติ</div>
+        <div class="service-price">เริ่มต้น ฿2,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👁️</div>
+        <div class="service-title">Computer Vision</div>
+        <div class="service-desc">Object Detection, OCR, ระบบตรวจจับด้วยกล้อง Real-time</div>
+        <div class="service-price">เริ่มต้น ฿5,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <div class="service-title">AI Chatbot</div>
+        <div class="service-desc">Line OA Chatbot, AI ตอบคำถามอัตโนมัติ 24 ชม. สำหรับธุรกิจ</div>
+        <div class="service-price">เริ่มต้น ฿3,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-title">Data Dashboard</div>
+        <div class="service-desc">วิเคราะห์ข้อมูล Excel และสร้าง Dashboard สวยงามด้วย Python</div>
+        <div class="service-price">เริ่มต้น ฿3,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <div class="service-title">Trading Bot</div>
+        <div class="service-desc">AI Trading Bot เชื่อมต่อ Binance API วิเคราะห์ตลาด Crypto</div>
+        <div class="service-price">เริ่มต้น ฿8,000</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔗</div>
+        <div class="service-title">API Integration</div>
+        <div class="service-desc">เชื่อมต่อ API ต่างๆ เข้าระบบธุรกิจ Webhook, REST API</div>
+        <div class="service-price">เริ่มต้น ฿2,000</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="https://fastwork.co" class="btn btn-primary" target="_blank" style="display:inline-block;">จ้างงานบน Fastwork →</a>
+    </div>
+  </div>
 
 <hr class="divider">
 
